@@ -4,14 +4,14 @@ body, .container {
 }
 
 .me {
-	width:5%;
+	width:4%;
 	height:5%;
 	padding: 0;
 	border:1px solid #000;
 }
 
 .red {
-	width:5%;
+	width:4%;
 	height:5%;
 	padding: 0;
 	background-color: #F00;
@@ -20,7 +20,7 @@ body, .container {
 }
 
 .green {
-	width:5%;
+	width:4%;
 	height:5%;
 	padding: 0;
 	background-color: #0F0;
