@@ -8,6 +8,7 @@ var up = 0;
 //
 // Create function that takes in data as json file
 // For each user in json data, create a new point in the board representing each user
+$(document).ready(function() {
 
 function updateBoard(data) {
 
@@ -26,15 +27,20 @@ function updateBoard(data) {
         var yCoor = ipAdd.y + "%";
         var mycolor = '' + ipAdd.color;
 
-        //Write data out to new div to inside of board container object
-        $('#container').append("<div id= " + ipAdd + "><div>");
-        $('#' + ipAdd).append("<class=" + mycolor + ">");
-        $('#' + ipAdd).css("left", xCoor)
-        $('#' + ipAdd).css("top", yCoor);
+        var blockDiv = $("<div><div>");
 
+        blockDiv.addClass(mycolor);
+        blockDiv.css("left", xCoor)
+        blockDiv.css("top", yCoor);
+
+        $('.container').append(blockDiv);
+        
     }
 
 }
+});
+
+
 //Function to examine the server response data and see if there are any new collisions.
 function detectCollision(data) {
     for (var i in data) {
