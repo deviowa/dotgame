@@ -19,8 +19,8 @@ function updateBoard(data) {
         var ipAdd = data[i];
 
         // Get x,y, and color attributes
-        var xCoor = ipAdd.x + "px";
-        var yCoor = ipAdd.y + "px";
+        var xCoor = ipAdd.x + "%";
+        var yCoor = ipAdd.y + "%";
         var mycolor =  '' + ipAdd.color;
     
         //Write data out to new div to inside of board container object
