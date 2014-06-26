@@ -25,7 +25,50 @@ var create = function(req, res, next) {
     }
 }
 
-//Function to examine the server response data and see if there are any new collisions.
+    function allGreen() {
+        var temp = true;
+
+        for (var i in positions) {
+            if (positions[i].state === "red" || positions[i].state === "frozen") {
+                temp = false;
+            }
+        }
+
+        return temp;
+
+    }
+
+    function allRed() {
+        var temp = true;
+
+        for (var i in positions) {
+            if (positions[i].state === "green" || positions[i].state === "frozen") {
+                temp = false;
+            }
+        }
+
+        return temp;
+    }
+
+    function resetBoard() {
+
+        var color = Math.random() * 2;
+
+        for (var i in positions) {
+            positions[i] = {
+                "x": Math.floor(100 * Math.random()),
+                "y": Math.floor(100 * Math.random()),
+                "state": (color >= 1 ? "red" : "green")
+            };
+        }
+
+        if (allRed() || allGreen) {
+            resetBoard();
+        }
+
+    }
+
+    //Function to examine the server response data and see if there are any new collisions.
     function detectCollision(data) {
         for (var i in data) {
             //If the outer element is already frozen, skip iterating over the inner loop
@@ -39,7 +82,7 @@ var create = function(req, res, next) {
                 } else {
                     //If the difference in X coordinates is 1 or less, check Y
                     if (Math.abs(data[i].x - data[j].x) <= 4) {
-                        if (Math.abs(data[i].y - data[j].y) <= 4) {
+                        if (Math.abs(data[i].y - data[j].y) <= 4 && data[i].state != data[j].state) {
                             //New collision detected. Return the IPs.
                             var ips = [];
                             ips.push(i);
@@ -51,6 +94,7 @@ var create = function(req, res, next) {
 
             }
         }
+
         return;
     }
 
@@ -65,6 +109,7 @@ app.get('/', function(req, res) {
 });
 
 app.put('/positions/me', function(req, res) {
+
     var ip = req.ip.toString();
 
     clearTimeout(timers[ip]);
@@ -97,8 +142,6 @@ app.put('/positions/me', function(req, res) {
     if (positions[ip].state != "frozen") {
         positions[ip].x += req.body.right;
         positions[ip].y -= req.body.top;
-    } else {
-        //console.log("FROZEN AHHHH");
     }
 
     if (positions[ip].x >= 95) positions[ip].x = 95;
