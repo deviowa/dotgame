@@ -1,20 +1,24 @@
 {
-    "name": "dotgame",
-    "version": "0.0.0",
-    "description": "dotgame =======",
-    "main": "func.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/deviowa/dotgame.git"
-    },
-    "author": "",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/deviowa/dotgame/issues"
-    },
-    "homepage": "https://github.com/deviowa/dotgame"
+  "name": "dotgame",
+  "version": "0.0.0",
+  "description": "dotgame =======",
+  "main": "func.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deviowa/dotgame.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deviowa/dotgame/issues"
+  },
+  "homepage": "https://github.com/deviowa/dotgame",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.4.4"
+  }
 }
